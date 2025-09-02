@@ -4,7 +4,7 @@ module.exports = {
       name: "generation",
       script: "serve.py",
       interpreter: "/venv/wala/bin/python",
-      args: '--model_name ADSKAILab/WaLa-MVDream-RGB4 --text_to_mv "generate me a cup" --output_dir examples',
+      args: '--model_name ADSKAILab/WaLa-MVDream-RGB4 --text_to_mv "generate me a cup" --output_dir examples --port 8095',
     },
   ],
 };

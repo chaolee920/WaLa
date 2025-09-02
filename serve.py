@@ -21,7 +21,6 @@ import time
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--port", type=int, default=10006)
-    parser.add_argument("--config", default="configs/text_mv.yaml")
    
     return parser.parse_args()
 
@@ -38,21 +37,13 @@ image_transform = None
 
 
 
-def get_config() -> OmegaConf:
-    config = OmegaConf.load(args.config)
-    return config
 
 
-
-@app.on_event("startup")
-def startup_event() -> None:
-    config = get_config()
     
 
 @app.post("/generate/")
 async def generate(
     prompt: str = Form(),
-    opt:OmegaConf = Depends(get_config),
     #models: list = Depends(get_models),
 ) -> Response:
     text_input = str(prompt)
