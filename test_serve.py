@@ -82,7 +82,7 @@ while cnt < 2 :
     images = [Image.fromarray(image) for image in images_np]
 
     save_dir = '/workspace/vol_sub17/test-wala'
-    save_dir.mkdir(parents=True, exist_ok=True)
+    # save_dir.mkdir(parents=True, exist_ok=True)
 
     for i, img in enumerate(images):
         output_path = os.path.join(save_dir, f"image_{i}.png")
