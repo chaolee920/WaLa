@@ -76,7 +76,7 @@ while cnt < 2 :
     torch.cuda.empty_cache()
     prompt = prompts_file.readline()
 
-    text_input = str(prompt) + ', cartoon, game, simple'
+    text_input = str(prompt) + ''
     num_of_frames = 4
     testing_views = [0, 6, 10, 26]
 
@@ -92,6 +92,8 @@ while cnt < 2 :
         output_path = os.path.join(save_dir, f"image_{testing_views[i]}.png")
         multiview_images.append(output_path)
         img.save(output_path, format = "PNG")
+
+    print(multiview_images)
 
     image_views = [
         int(os.path.basename(Path(image).name).split("_")[1].split(".")[0])
