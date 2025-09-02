@@ -1,4 +1,5 @@
 import os
+import requests
 import open3d as o3d
 from pathlib import Path
 os.environ['SPCONV_ALGO'] = 'native'
