@@ -93,7 +93,10 @@ while cnt < 2 :
         f'{save_dir}/image_2.png',
         f'{save_dir}/image_3.png',
     ]
-    image_views = ['image_0.png', 'image_1.png', 'image_2.png', 'image_3.png']
+    image_views = [
+        int(os.path.basename(Path(image).name).split(".")[0])
+        for image in multiview_images
+    ]
     data = get_multiview_data(
         image_files=multiview_images,
         views=image_views,
