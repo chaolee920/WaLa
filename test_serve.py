@@ -80,7 +80,7 @@ while cnt < 2 :
 
     text_input = str(prompt) + ''
     num_of_frames = 4
-    testing_views = [0, 6, 10, 26]
+    testing_views = [3, 6, 10, 26, 49, 50]
 
     images_np, image_views = model.inference_step(prompt=text_input, num_frames=num_of_frames, testing_views=testing_views)
     images = [Image.fromarray(image) for image in images_np]
