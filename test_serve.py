@@ -4,6 +4,7 @@ from pathlib import Path
 os.environ['SPCONV_ALGO'] = 'native'
 
 from io import BytesIO
+import pybase64
 
 import torch
 from src.dataset_utils import (
@@ -74,7 +75,7 @@ while cnt < 2 :
     torch.cuda.empty_cache()
     prompt = prompts_file.readline()
 
-    text_input = str(prompt)
+    text_input = str(prompt) + ', cartoon, game, simple'
     num_of_frames = 4
     testing_views = [0, 6, 10, 26]
 
