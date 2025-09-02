@@ -84,17 +84,15 @@ while cnt < 2 :
     save_dir = '/workspace/vol_sub17/test-wala'
     # save_dir.mkdir(parents=True, exist_ok=True)
 
+    multiview_images = []
+
     for i, img in enumerate(images):
-        output_path = os.path.join(save_dir, f"image_{i}.png")
+        output_path = os.path.join(save_dir, f"image_{testing_views[i]}.png")
+        multiview_images.append(output_path)
         img.save(output_path, format = "PNG")
-    multiview_images = [
-        f'{save_dir}/image_0.png',
-        f'{save_dir}/image_1.png',
-        f'{save_dir}/image_2.png',
-        f'{save_dir}/image_3.png',
-    ]
+
     image_views = [
-        int(os.path.basename(Path(image).name).split(".")[0])
+        int(os.path.basename(Path(image).name).split("_")[1].split(".")[0])
         for image in multiview_images
     ]
     data = get_multiview_data(
