@@ -44,7 +44,11 @@ model = load_mvdream_model(
     pretrained_model_name_or_path = "ADSKAILab/WaLa-MVDream-RGB4", 
     device = "cuda"
 )
-image_transform = None 
+image_transform_ = None 
+model_3d = Model.from_pretrained("ADSKAILab/WaLa-RGB4-1B")
+model_3d.device = "cuda"
+image_transform_3d = get_image_transform_latent_model()
+
     
 
 @app.post("/generate/")
@@ -75,13 +79,13 @@ async def generate(
     data = get_multiview_data(
         image_files=multiview_images,
         views=image_views,
-        image_transform=image_transform,
-        device=model.device,
+        image_transform=image_transform_3d,
+        device=model_3d.device,
     )
     data_idx = 0
     save_dir = f'{save_dir}/result/'
     generate_3d_object(
-        model,
+        model_3d,
         data,
         data_idx,
         1.3,
