@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "generation",
       script: "serve.py",
-      interpreter: "${CONDA_INTERPRETER_PATH}",
+      interpreter: "/venv/wala/bin/python",
       args: '--model_name ADSKAILab/WaLa-MVDream-RGB4 --text_to_mv "generate me a cup" --output_dir examples',
     },
   ],
