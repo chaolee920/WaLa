@@ -31,7 +31,7 @@ app = FastAPI()
 
 model = load_mvdream_model(
     pretrained_model_name_or_path = "ADSKAILab/WaLa-MVDream-RGB4", 
-    device = args.device
+    device = "cuda"
 )
 image_transform = None 
     
