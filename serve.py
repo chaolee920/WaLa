@@ -46,7 +46,6 @@ model = load_mvdream_model(
 )
 image_transform_ = None 
 model_3d = Model.from_pretrained("ADSKAILab/WaLa-RGB4-1B")
-model_3d.device = "cuda"
 image_transform_3d = get_image_transform_latent_model()
 
     
