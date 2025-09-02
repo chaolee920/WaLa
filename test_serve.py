@@ -28,13 +28,11 @@ import time
 
 
 model = load_mvdream_model(
-    # pretrained_model_name_or_path = "ADSKAILab/WaLa-MVDream-RGB4", 
-    pretrained_model_name_or_path = "ADSKAILab/WaLa-MVDream-DM6",
+    pretrained_model_name_or_path = "ADSKAILab/WaLa-MVDream-RGB4", 
     device = "cuda"
 )
 image_transform_ = None 
-# model_3d = Model.from_pretrained("ADSKAILab/WaLa-RGB4-1B")
-model_3d = Model.from_pretrained("ADSKAILab/WaLa-DM6-1B")
+model_3d = Model.from_pretrained("ADSKAILab/WaLa-RGB4-1B")
 image_transform_3d = get_image_transform_latent_model()
 
 
@@ -74,13 +72,13 @@ def generate_3d_object(
 
 prompts_file = open("/workspace/vol_sub17/prompts.txt", "r")
 cnt = 0
-while cnt < 2 :
+while cnt < 10 :
     torch.cuda.empty_cache()
     prompt = prompts_file.readline()
 
-    text_input = str(prompt) + ''
+    text_input = str(prompt) + ', cartoon, game, simple'
     num_of_frames = 4
-    testing_views = [3, 6, 10, 26, 49, 50]
+    testing_views = [0, 6, 10, 26]
 
     images_np, image_views = model.inference_step(prompt=text_input, num_frames=num_of_frames, testing_views=testing_views)
     images = [Image.fromarray(image) for image in images_np]
@@ -101,7 +99,7 @@ while cnt < 2 :
         int(os.path.basename(Path(image).name).split("_")[1].split(".")[0])
         for image in multiview_images
     ]
-    data = get_mv_dm_data(
+    data = get_multiview_data(
         image_files=multiview_images,
         views=image_views,
         image_transform=image_transform_3d,
