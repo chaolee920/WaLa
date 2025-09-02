@@ -30,15 +30,10 @@ app = FastAPI()
 
 
 model = load_mvdream_model(
-    pretrained_model_name_or_path = args.model_name, 
+    pretrained_model_name_or_path = "ADSKAILab/WaLa-MVDream-RGB4", 
     device = args.device
 )
 image_transform = None 
-
-
-
-
-
     
 
 @app.post("/generate/")
@@ -53,7 +48,7 @@ async def generate(
     images_np, image_views = model.inference_step(prompt=text_input, num_frames=num_of_frames, testing_views=testing_views)
     images = [Image.fromarray(image) for image in images_np]
 
-    save_dir = Path(args.output_dir) / Path("mv_images")
+    save_dir = '/workspace/vol_sub17/test-wala'
     save_dir.mkdir(parents=True, exist_ok=True)
 
     for i, img in enumerate(images):
