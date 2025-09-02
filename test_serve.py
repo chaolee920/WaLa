@@ -114,3 +114,22 @@ while cnt < 2 :
         None,
         42,
     )
+
+    # Load OBJ
+    mesh = o3d.io.read_triangle_mesh(f'{save_dir}test.obj')
+
+    # Save as PLY
+    o3d.io.write_triangle_mesh("output.ply", mesh)
+
+    with open("./output.ply", "rb") as file:
+        file_data = file.read()
+    encoded_data = pybase64.b64encode(file_data).decode("utf-8")
+    validate_url = 'http://127.0.0.1:8094/validate_txt_to_3d_ply'
+    response = requests.post(validate_url, json={"prompt": prompt, "data": encoded_data})
+    if response.status_code == 200:
+        results_validation = response.json()
+
+        validation_score = float(results_validation["score"])
+        print(validation_score)
+    
+    cnt = cnt + 1
