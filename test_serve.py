@@ -28,11 +28,13 @@ import time
 
 
 model = load_mvdream_model(
-    pretrained_model_name_or_path = "ADSKAILab/WaLa-MVDream-RGB4", 
+    # pretrained_model_name_or_path = "ADSKAILab/WaLa-MVDream-RGB4", 
+    pretrained_model_name_or_path = "ADSKAILab/WaLa-MVDream-DM6",
     device = "cuda"
 )
 image_transform_ = None 
-model_3d = Model.from_pretrained("ADSKAILab/WaLa-RGB4-1B")
+# model_3d = Model.from_pretrained("ADSKAILab/WaLa-RGB4-1B")
+model_3d = Model.from_pretrained("ADSKAILab/WaLa-DM6-1B")
 image_transform_3d = get_image_transform_latent_model()
 
 
@@ -99,7 +101,7 @@ while cnt < 2 :
         int(os.path.basename(Path(image).name).split("_")[1].split(".")[0])
         for image in multiview_images
     ]
-    data = get_multiview_data(
+    data = get_mv_dm_data(
         image_files=multiview_images,
         views=image_views,
         image_transform=image_transform_3d,

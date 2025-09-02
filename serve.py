@@ -75,7 +75,7 @@ async def generate(
         f'{save_dir}/image_3.png',
     ]
     image_views = ['image_0.png', 'image_1.png', 'image_2.png', 'image_3.png']
-    data = get_multiview_data(
+    data = get_mv_dm_data(
         image_files=multiview_images,
         views=image_views,
         image_transform=image_transform_3d,
